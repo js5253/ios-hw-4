@@ -9,9 +9,14 @@ import SwiftUI
 
 @main
 struct iOSHW4App: App {
+    var locationManager = LocationManager.shared
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            NavigationStack {
+                ContentView()
+                    .environmentObject(locationManager)
+                    
+            }
         }
     }
 }

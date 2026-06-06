@@ -8,14 +8,31 @@
 import SwiftUI
 
 struct ContentView: View {
+    @EnvironmentObject var manager: LocationManager
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        List {
+            Button(action: {
+                LocationManager.shared.requestLocation()
+            }) {
+                Text("Ask for Permission")
+            }
+            Group {
+                NavigationLink("Lab1") {
+                    LabOne()
+                }
+                NavigationLink("Lab2") {
+                    LabTwo()
+                }
+            }.disabled(!manager.updatesEnabled)
+
+            NavigationLink("AdditionalScreen") {
+                AdditionalScreen()
+            }
+
         }
-        .padding()
+        .onAppear {
+            manager.checkIfLocationServicesIsEnabled()
+        }
     }
 }
 
