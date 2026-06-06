@@ -7,6 +7,19 @@
 
 import SwiftUI
 import EventKit
+
+struct AdditionalDetailScreen: View {
+    var event: EKEvent
+    var body: some View {
+        List {
+            Text(event.title).font(.title)
+            Text("From \(event.startDate) to \(event.endDate)")
+            Text(event.organizer?.name ?? "No Organizer")
+            Text("Identifier: \(event.id)").font(.caption2)
+            
+        }
+    }
+}
 struct AdditionalScreen: View {
     @EnvironmentObject var calendarManager: CalendarManager
 
@@ -21,7 +34,9 @@ struct AdditionalScreen: View {
                 Text("Get Events")
             }
             ForEach(CalendarManager.shared.events) { event in
-                Text(event.title)
+                NavigationLink(event.title) {
+                    AdditionalDetailScreen(event: event)
+                }
             }
         }
     }
