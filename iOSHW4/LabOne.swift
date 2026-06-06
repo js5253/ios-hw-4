@@ -27,7 +27,7 @@ struct LabOne: View {
                 Toggle("Location Updates", isOn: $locationUpdatesOn)
                     .onChange(of: locationUpdatesOn, {
                         oldVal, newVal in
-                        if (newVal == true) {
+                        if (newVal) {
                             LocationManager.shared.enableUpdates()
                         } else {
                             LocationManager.shared.disableUpdates()

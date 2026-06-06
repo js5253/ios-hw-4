@@ -10,12 +10,14 @@ import SwiftUI
 @main
 struct iOSHW4App: App {
     var locationManager = LocationManager.shared
+    var calendarManager = CalendarManager.shared
     var body: some Scene {
         WindowGroup {
             NavigationStack {
                 ContentView()
                     .environmentObject(locationManager)
-                    
+                    .environmentObject(calendarManager)
+
             }
         }
     }
