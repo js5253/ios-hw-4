@@ -20,7 +20,7 @@ struct AdditionalScreen: View {
             }) {
                 Text("Get Events")
             }
-            ForEach(calendarManager.events) { event in
+            ForEach(CalendarManager.shared.events) { event in
                 Text(event.title)
             }
         }

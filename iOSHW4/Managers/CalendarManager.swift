@@ -23,7 +23,7 @@ final class CalendarManager: ObservableObject {
             
             let startDate = Calendar.current.date(byAdding: .month, value: -6, to: Date())!
             let endDate = Calendar.current.date(byAdding: .year, value: 1, to: Date())!
-            let events = store.events(matching: store.predicateForEvents(withStart: startDate, end: endDate, calendars: calendars))
+            events = store.events(matching: store.predicateForEvents(withStart: startDate, end: endDate, calendars: calendars))
             
             print(events)
 
