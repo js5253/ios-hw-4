@@ -15,7 +15,7 @@ struct ContentView: View {
                 LocationManager.shared.requestLocation()
             }) {
                 Text("Ask for Permission")
-            }
+            }.disabled(manager.servicesOn)
             Group {
                 NavigationLink("Lab1") {
                     LabOne()
@@ -23,9 +23,9 @@ struct ContentView: View {
                 NavigationLink("Lab2") {
                     LabTwo()
                 }
-            }.disabled(!manager.updatesEnabled)
+            }.disabled(!manager.servicesOn)
 
-            NavigationLink("AdditionalScreen") {
+            NavigationLink("Calendar Events") {
                 AdditionalScreen()
             }
 

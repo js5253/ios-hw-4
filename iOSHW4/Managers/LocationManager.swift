@@ -9,7 +9,8 @@ import CoreLocation
 internal import Combine
 class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
     
-    static var shared = LocationManager()
+    static let shared = LocationManager()
+    var status: CLAuthorizationStatus = .notDetermined;
     var manager: CLLocationManager?
     @Published var location: CLLocationCoordinate2D?
     @Published var heading: CLHeading?
@@ -20,7 +21,9 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
     override init() {
         super.init()
     }
-    
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        self.status = status;
+    }
     func checkIfLocationServicesIsEnabled() {
         if (CLLocationManager.locationServicesEnabled()) {
             manager = CLLocationManager()
@@ -79,7 +82,6 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
         }
         func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
             location = locations.first?.coordinate
-            print("Updated Locations!")
         }
     func locationManager(_ manager: CLLocationManager, didUpdateHeading newHeading: CLHeading) {
         print(newHeading)
